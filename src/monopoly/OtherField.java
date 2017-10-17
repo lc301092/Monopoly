@@ -9,15 +9,14 @@ package monopoly;
  *
  * @author Luca Casa
  */
-public class OtherField implements FieldInterface{
+public class OtherField extends Field{
     private String name;
     private int number;
     // 
 
     protected OtherField(String name, int number)
     {
-        this.name = name;
-        this.number = number;
+       super(number, name);
     }
 
     @Override

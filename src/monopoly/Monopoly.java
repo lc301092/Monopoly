@@ -16,7 +16,7 @@ public class Monopoly implements MonopolyConstants {
     private File fieldData;
 
     // statisk array
-    public static List<OwnableField> fields;
+    public static List<Field> fields;
 
     // 2 spillere 
     private Player p1, p2;
@@ -25,12 +25,12 @@ public class Monopoly implements MonopolyConstants {
         // readFile er Monopoly private metode. 
         //Den scanner dokumentet og creater et game board
         readFile();
-        System.out.println(fields.size());
+        testBoard();
         // create players
         p1 = new Player(new DiceCup(6), "Miriam", fields.get(0), START_MONEY);
         p2 = new Player(new DiceCup(6), "Luca", fields.get(0), START_MONEY);
         // start game sequence
-        newRound();
+        //newRound();
     }
 
     public void newRound() {
@@ -48,7 +48,7 @@ public class Monopoly implements MonopolyConstants {
         }
     }
 
-    private List<OwnableField> readFile() {
+    private List<Field> readFile() {
         fields = new ArrayList<>();
         // scanner is used to read data in the txt file
         fieldData = new File("MonopolyData.txt");
@@ -86,43 +86,43 @@ public class Monopoly implements MonopolyConstants {
                  // 2. pushes ind i arrayet som er spilbrættet
                 switch(fieldType){
                     case "start": System.out.println("Felt: " + fieldNumber + " new otherField startfelt");
-                    OwnableField start = new StreetField(fieldName, fieldNumber, 10000);
+                    Field start = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(start);    
                     break;
                     case "?": System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt");
-                    OwnableField lucky = new StreetField(fieldName, fieldNumber, 10000);
+                    Field lucky = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(lucky); 
                     break;
                     case "tax": System.out.println("Felt: " + fieldNumber + " new otherField skattefelt");
-                    OwnableField tax = new StreetField(fieldName, fieldNumber, 10000);
+                    Field tax = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(tax); 
                     break;
                     case "ship": System.out.println("Felt: " + fieldNumber + " new shipfield");
-                    OwnableField ship = new StreetField(fieldName, fieldNumber, 10000);
+                    Field ship = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(ship); 
                     break;
                     case "brewery": System.out.println("Felt: " + fieldNumber + " new breweryfield");
-                    OwnableField brewery = new StreetField(fieldName, fieldNumber, 10000);
+                    Field brewery = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(brewery); 
                     break;
                     case "go2jail": System.out.println("Felt: " + fieldNumber + " new otherfiled gotojailfield");
-                    OwnableField goToJail = new StreetField(fieldName, fieldNumber, 10000);
+                    Field goToJail = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(goToJail); 
                     break;
                     case "jail": System.out.println("Felt: " + fieldNumber + " new otherfield jailfield");
-                    OwnableField jail = new StreetField(fieldName, fieldNumber, 10000);
+                    Field jail = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(jail); 
                     break;
                     case "parking": System.out.println("Felt: " + fieldNumber + " new otherfield parkeringsplads");
-                    OwnableField parking = new StreetField(fieldName, fieldNumber, 10000);
+                    Field parking = new StreetField(fieldName, fieldNumber, 10000);
                     fields.add(parking); 
                     break;
                     default: 
                     System.out.println("Felt: " + fieldNumber + " " + fieldName + "'s længde er " + tokens.length );
 //                    if(tokens.length > 4){
                     fieldPrice = Integer.parseInt(tokens[3]);
-                    OwnableField field = new StreetField(fieldName, fieldNumber, fieldPrice);
-                    fields.add(field);
+                    OwnableField street = new StreetField(fieldName, fieldNumber, fieldPrice);
+                    fields.add(street);
 //                    }
                     break;
                 }         
@@ -144,5 +144,13 @@ public class Monopoly implements MonopolyConstants {
         return fields;
 
     }
-
+    public void testBoard (){
+        System.out.println("initialize testing...");
+        System.out.println("Board size is: " + (fields.size()));
+        System.out.println("Board array: " + (fields));
+        System.out.println("testing all the fields");
+        for(int i = 0; i < fields.size(); i++){
+            System.out.println("field " + i + " is " + ((StreetField)fields.get(i)).getName() );
+        }
+    }
 }

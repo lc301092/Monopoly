@@ -9,12 +9,12 @@ package monopoly;
  *
  * @author Luca Casa
  */
-public class Field {
+public abstract class Field implements FieldInterface {
 
     private int fieldNumber;
     private String fieldName;
 
-    public Field(int space, String name) {
+    protected Field(int space, String name) {
         this.fieldNumber = space;
         this.fieldName = name;
     }
@@ -24,11 +24,13 @@ public class Field {
         return "Feltets plads i arrayer er index: " + fieldNumber + " og feltet hedder i spillet: " + fieldName;
     }
 
-    int getFieldNumber() {
+    @Override
+    public int getNumber() {
         return this.fieldNumber;
     }
 
-    String getSpaceName() {
+    @Override
+    public String getName() {
         return this.fieldName;
     }
     

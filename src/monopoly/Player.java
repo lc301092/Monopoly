@@ -14,10 +14,10 @@ public class Player {
     private int roundsOnField;
     private DiceCup cup;
     private String name;
-    private OwnableField currentField;
+    private Field currentField;
     private int money;
 
-    public Player(DiceCup cup, String name, OwnableField startField, int money) {
+    public Player(DiceCup cup, String name, Field startField, int money) {
         this.cup = cup;
         this.name = name;
         currentField = startField;

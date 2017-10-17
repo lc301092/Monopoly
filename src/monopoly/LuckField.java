@@ -14,5 +14,4 @@ public class LuckField extends OtherField {
     public LuckField(String name, int number) {
         super(name, number);
     }
-    
 }

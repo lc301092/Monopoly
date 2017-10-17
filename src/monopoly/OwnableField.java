@@ -5,7 +5,7 @@ package monopoly;
  *
  * @author erso
  */
-public abstract class OwnableField implements FieldInterface{
+public abstract class OwnableField extends Field{
     private String name;
     private int number;
     private int price;
@@ -13,10 +13,11 @@ public abstract class OwnableField implements FieldInterface{
 
     protected OwnableField(String name, int number, int price)
     {
-        this.name = name;
-        this.number = number;
+        super(number, name);
         this.price = price;
     }
+
+    
 
     @Override
     public String getName(){
@@ -43,5 +44,4 @@ public abstract class OwnableField implements FieldInterface{
     {
         this.owner = owner;
     }
-
 }
