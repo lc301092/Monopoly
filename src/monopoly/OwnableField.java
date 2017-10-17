@@ -7,6 +7,7 @@ package monopoly;
  */
 public abstract class OwnableField extends Field{
     // This field is never assigned:
+    // NOTE: name field semantically "shadows" Field.fieldName.
     private String name;
     
     private int number;
@@ -22,7 +23,7 @@ public abstract class OwnableField extends Field{
         // this.name = name;
         
         // Is this.name redundant? Is this.name semantically equal to Field.fieldName?
-        // In that case, drop this.name and fallback to Field.fieldName!
+        // In that case, actual solution: drop this.name and fallback to Field.fieldName!
         
     }
 
