@@ -11,28 +11,26 @@ package monopoly;
  */
 public abstract class Field implements FieldInterface {
 
-    private int fieldNumber;
-    private String fieldName;
+    private String name;
+    protected int number;
 
-    protected Field(int space, String name) {
-        this.fieldNumber = space;
-        this.fieldName = name;
+    protected Field(String name, int number) {
+        this.name = name;
+        this.number = number;
     }
 
     // skal skrives om, når Player class og Monopoly class er programmeret
-    public String toString() {
-        return "Feltets plads i arrayer er index: " + fieldNumber + " og feltet hedder i spillet: " + fieldName;
-    }
-
     @Override
-    public int getNumber() {
-        return this.fieldNumber;
+    public String toString() {
+        return " feltet hedder i spillet: " + name;
     }
-
+    
     @Override
     public String getName() {
-        return this.fieldName;
+        return name;
     }
+    
+    
     
 //   
 

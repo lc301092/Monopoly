@@ -9,15 +9,20 @@ package monopoly;
  *
  * @author Luca Casa
  */
-public class StreetField extends OwnableField{
+public class StreetField extends OwnableField {
 
     public StreetField(String name, int number, int price) {
         super(name, number, price);
+
     }
 
     @Override
     public void consequence(Player poorPlayer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public int getNumber() {
+        return this.number;
+    }
 }

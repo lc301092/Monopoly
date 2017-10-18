@@ -4,30 +4,21 @@ package monopoly;
  *
  * @author erso
  */
-public class GoToJailField implements FieldInterface {
-
-    private String name;
-    private int number;
+public class GoToJailField extends Field {
 
     public GoToJailField(String name, int number) {
-        this.name = name;
-        this.number = number;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int getNumber() {
-        return number;
+        super(name, number);
     }
 
     @Override
     public void consequence(Player poorPlayer) {
         poorPlayer.setPos(MonopolyConstants.JAIL_POS);
 
+    }
+
+    @Override
+    public int getNumber() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

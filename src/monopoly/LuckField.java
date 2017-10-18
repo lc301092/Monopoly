@@ -9,9 +9,19 @@ package monopoly;
  *
  * @author Luca Casa
  */
-public class LuckField extends OtherField {
+public class LuckField extends Field {
     
     public LuckField(String name, int number) {
         super(name, number);
+    }
+
+    @Override
+    public int getNumber() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consequence(Player poorPlayer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

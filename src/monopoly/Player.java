@@ -64,8 +64,6 @@ public class Player {
     }
 
     void setPos(int JAIL_POS) {
-        // HER SKAL VÆRE NOGET KODE FOR AT RYGE I FÆNGSEL;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
