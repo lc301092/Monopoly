@@ -22,6 +22,6 @@ public class LuckField extends Field {
 
     @Override
     public void consequence(Player poorPlayer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(poorPlayer + " PICKS A CARD FROM LUCK PILE");
     }
 }

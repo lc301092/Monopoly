@@ -16,6 +16,7 @@ public class Player {
     private String name;
     private Field currentField;
     private int money;
+    private int equalEyesCount;
 
     public Player(DiceCup cup, String name, Field startField, int money) {
         this.cup = cup;
@@ -33,8 +34,8 @@ public class Player {
         System.out.println(name + " rolls " + roll);
         // return the new position
         curPos += roll;
-
         if (curPos >= Monopoly.FIELD_COUNT) {
+            // spilleren forbipasserer startfeltet
             curPos = curPos % Monopoly.FIELD_COUNT;
             roundsOnField++;
             currentField = Monopoly.fields.get(curPos);
@@ -44,22 +45,37 @@ public class Player {
             System.out.println(name + " now has " + money + "$");
 
             // Tjekker om det samme antal øjne bliver slået
-            if (cup.isEqual()) {
-                System.out.println(name + "'s dies were equal, roll again:");
-                move();
-            }
-        } else {
+            checkEqualEyes();
+        } 
+        
+        else {
 
             currentField = Monopoly.fields.get(curPos);
             System.out.println(name + " moves to " + Monopoly.fields.get(curPos).getName() + " at space: " + Monopoly.fields.get(curPos).getNumber());
 
             // Tjekker om det samme antal øjne bliver slået
-            if (cup.isEqual()) {
-                System.out.println(name + "'s dies were equal, roll again:");
-
-                move();
-            }
+            checkEqualEyes();
         }
+
+    }
+
+    private void checkEqualEyes() {
+
+        // Tjekker om det samme antal øjne bliver slået
+        if (cup.isEqual()) {
+
+            equalEyesCount++;
+            System.out.println(name + "'s dies were equal, roll again:");
+            System.out.println(name + "'s EQUAL DICE COUNT: " + equalEyesCount);
+
+            if (equalEyesCount >= 2) {
+               
+                // gå i fængsel position 
+                setPos(0); 
+            }
+            move();
+        }
+        equalEyesCount = 0;
 
     }
 

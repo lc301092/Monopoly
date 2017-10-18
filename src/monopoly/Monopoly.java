@@ -88,12 +88,13 @@ public class Monopoly implements MonopolyConstants {
                 switch (fieldType) {
                     case "start":
                         System.out.println("Felt: " + fieldNumber + " new otherField startfelt");
-                        Field start = new StreetField(fieldName, fieldNumber, 10000);
+                        // NY CLASS StartField SKAL LAVES.
+                        Field start = new OtherField(fieldName, fieldNumber);
                         fields.add(start);
                         break;
                     case "?":
                         System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt");
-                        Field lucky = new StreetField(fieldName, fieldNumber, 10000);
+                        Field lucky = new LuckField(fieldName, fieldNumber);
                         fields.add(lucky);
                         break;
                     case "tax":
@@ -103,7 +104,8 @@ public class Monopoly implements MonopolyConstants {
                         break;
                     case "ship":
                         System.out.println("Felt: " + fieldNumber + " new shipfield");
-                        Field ship = new StreetField(fieldName, fieldNumber, 10000);
+                        fieldPrice = Integer.parseInt(tokens[3]);
+                        Field ship = new ShipField(fieldName, fieldNumber, fieldPrice);
                         fields.add(ship);
                         break;
                     case "brewery":
