@@ -31,9 +31,13 @@ public class Player {
         int curPos = currentField.getNumber();
         // the active player throws the cup
         int roll = cup.throwCup();
-        System.out.println(name + " rolls " + roll);
+       // System.out.println(name + " rolls " + roll);
         // return the new position
         curPos += roll;
+       
+        // Måske et if statement, der tjekker om spilleren er på go2Jail fields
+        
+        
         if (curPos >= Monopoly.FIELD_COUNT) {
             // spilleren forbipasserer startfeltet
             curPos = curPos % Monopoly.FIELD_COUNT;
@@ -68,18 +72,25 @@ public class Player {
             System.out.println(name + "'s dies were equal, roll again:");
             System.out.println(name + "'s EQUAL DICE COUNT: " + equalEyesCount);
 
-            if (equalEyesCount >= 2) {
+            if (equalEyesCount >= 3) {
                
                 // gå i fængsel position 
-                setPos(0); 
+                setPos(MonopolyConstants.JAIL_POS); 
             }
             move();
         }
         equalEyesCount = 0;
-
     }
 
     void setPos(int JAIL_POS) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println( name + " is in jail");
+        currentField = Monopoly.fields.get(JAIL_POS);
+                
+        
+    }
+    void go2Jail(int GO_TO_JAIL_POS){
+        System.out.println(name + " landed on "+ Monopoly.fields.get(GO_TO_JAIL_POS) +" and is going to jail");
+        
     }
 }
+

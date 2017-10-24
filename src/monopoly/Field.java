@@ -11,15 +11,16 @@ package monopoly;
  */
 public abstract class Field implements FieldInterface {
 
-    private String name;
+    String name;
     protected int number;
+   
 
     protected Field(String name, int number) {
         this.name = name;
         this.number = number;
     }
 
-    // skal skrives om, når Player class og Monopoly class er programmeret
+   
     @Override
     public String toString() {
         return " feltet hedder i spillet: " + name;

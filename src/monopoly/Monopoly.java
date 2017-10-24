@@ -39,7 +39,7 @@ public class Monopoly implements MonopolyConstants {
         if (roundCounter > ROUND_MAX) {
             System.out.println("Game is over now");
         } else {
-            System.out.println("Round " + roundCounter);
+            System.out.println(" " );
             // spiller 1 skal slå og flytte sig
             p1.move();
             // spiller 2 skal slå og flytte sig
@@ -90,54 +90,62 @@ public class Monopoly implements MonopolyConstants {
                         System.out.println("Felt: " + fieldNumber + " new otherField startfelt");
                         // NY CLASS StartField SKAL LAVES.
                         Field start = new OtherField(fieldName, fieldNumber);
+                        
                         fields.add(start);
                         break;
                     case "?":
-                        System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt");
+                        System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt"); 
                         Field lucky = new LuckField(fieldName, fieldNumber);
                         fields.add(lucky);
                         break;
                     case "tax":
                         System.out.println("Felt: " + fieldNumber + " new otherField skattefelt");
-                        Field tax = new StreetField(fieldName, fieldNumber, 10000);
+                        // NY CLASS TaxField SKAL LAVES
+                        Field tax = new OtherField(fieldName, fieldNumber);
                         fields.add(tax);
                         break;
                     case "ship":
                         System.out.println("Felt: " + fieldNumber + " new shipfield");
                         fieldPrice = Integer.parseInt(tokens[3]);
-                        Field ship = new ShipField(fieldName, fieldNumber, fieldPrice);
+                        fieldRent = Integer.parseInt(tokens[4]);
+                        Field ship = new ShipField(fieldName, fieldNumber, fieldPrice, fieldRent);
                         fields.add(ship);
                         break;
                     case "brewery":
                         System.out.println("Felt: " + fieldNumber + " new breweryfield");
-                        Field brewery = new StreetField(fieldName, fieldNumber, 10000);
+                        fieldPrice = Integer.parseInt(tokens[3]);
+                        Field brewery = new BreweryField(fieldName, fieldNumber, fieldPrice);
                         fields.add(brewery);
                         break;
                     case "go2jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfiled gotojailfield");
-                        Field goToJail = new StreetField(fieldName, fieldNumber, 10000);
+                        Field goToJail = new GoToJailField(fieldName, fieldNumber);
                         fields.add(goToJail);
                         break;
                     case "jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfield jailfield");
-                        Field jail = new StreetField(fieldName, fieldNumber, 10000);
+                        // NY CLASS Jail SKAL LAVES
+                        Field jail = new OtherField(fieldName, fieldNumber);
                         fields.add(jail);
                         break;
                     case "parking":
                         System.out.println("Felt: " + fieldNumber + " new otherfield parkeringsplads");
-                        Field parking = new StreetField(fieldName, fieldNumber, 10000);
+                        // NY CLASS Parking SKAL LAVES
+                        Field parking = new OtherField(fieldName, fieldNumber);
                         fields.add(parking);
                         break;
                     default:
                         System.out.println("Felt: " + fieldNumber + " " + fieldName + "'s længde er " + tokens.length);
 //                    if(tokens.length > 4){
                         fieldPrice = Integer.parseInt(tokens[3]);
-                        OwnableField street = new StreetField(fieldName, fieldNumber, fieldPrice);
+                        fieldRent = Integer.parseInt(tokens[4]);
+                        OwnableField street = new StreetField(fieldName, fieldNumber, fieldPrice, fieldRent);
                         fields.add(street);
 //                    }
                         break;
                 }
             }
+        
             // catches til eventuelle execeptions
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -164,4 +172,6 @@ public class Monopoly implements MonopolyConstants {
             System.out.println("field " + i + " is " + fields.get(i).getName());
         }
     }
+
+   
 }

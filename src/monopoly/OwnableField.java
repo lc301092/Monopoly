@@ -10,12 +10,14 @@ public abstract class OwnableField extends Field{
     // NOTE: name field semantically "shadows" Field.fieldName.
     private int price;
     private Player owner;
+    private int rent; 
 
-    protected OwnableField(String name, int number, int price)
+    protected OwnableField(String name, int number, int price, int rent)
     {
         // Parameter passed to constructor is passed to base class.
         super(name, number);
         this.price = price;
+        this.rent = rent; 
         
         // Solution:
         // this.name = name;
@@ -42,4 +44,5 @@ public abstract class OwnableField extends Field{
     {
         this.owner = owner;
     }
+
 }

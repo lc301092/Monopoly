@@ -13,12 +13,11 @@ public class GoToJailField extends Field {
     @Override
     public void consequence(Player poorPlayer) {
         poorPlayer.setPos(MonopolyConstants.JAIL_POS);
-
     }
 
     @Override
     public int getNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return number; 
     }
 
 }
