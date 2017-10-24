@@ -19,7 +19,7 @@ public class OtherField extends Field {
     @Override
     public void consequence(Player poorPlayer) {
         // has a special effect depending if it's eg. start field or luckfield 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(poorPlayer + " landed on otherFields");
     }
 
     @Override

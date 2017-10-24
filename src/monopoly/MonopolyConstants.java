@@ -13,6 +13,8 @@ public interface MonopolyConstants
     int INDKOMSTSKAT = 200;
     int STATSSKAT = 100;
     int GO_TO_JAIL_POS = 31;
+    int LUCK_MONEY = 100; 
+    int TAX_MONEY = 50;
 
     String[] FIELD_NAMES =
     {

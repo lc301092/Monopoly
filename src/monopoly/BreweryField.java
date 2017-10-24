@@ -19,7 +19,7 @@ public class BreweryField extends OwnableField{
 
     @Override
     public void consequence(Player poorPlayer) {
-        System.out.println(poorPlayer + " landed on a Brewery field");
+        System.out.println(poorPlayer.getName() + " landed on a Brewery field");
     }
 
     @Override

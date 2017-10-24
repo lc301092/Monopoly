@@ -10,7 +10,7 @@ public abstract class OwnableField extends Field{
     // NOTE: name field semantically "shadows" Field.fieldName.
     private int price;
     private Player owner;
-    private int rent; 
+    int rent; 
 
     protected OwnableField(String name, int number, int price, int rent)
     {

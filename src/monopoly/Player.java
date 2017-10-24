@@ -6,6 +6,7 @@
 package monopoly;
 
 import java.util.ArrayList;
+import static monopoly.Monopoly.fields;
 
 /**
  *
@@ -44,24 +45,21 @@ public class Player {
             // spilleren forbipasserer startfeltet
             curPos = curPos % Monopoly.FIELD_COUNT;
             roundsOnField++;
-            currentField = Monopoly.fields.get(curPos);
-            System.out.println(name + " moves to " + Monopoly.fields.get(curPos).getName() + " at space: " + Monopoly.fields.get(curPos).getNumber());
-            //System.out.println(name + " has passed the round marker: " + roundsOnField + " times and gets an additional: " + Monopoly.START_MONEY + "$");
-            //money += MonopolyConstants.START_MONEY;
-            System.out.println(name + " now has " + money + "$");
 
-            // Tjekker om det samme antal øjne bliver slået
-            checkEqualEyes();
-        } else {
-
-            currentField = Monopoly.fields.get(curPos);
-            System.out.println(name + " moves to " + Monopoly.fields.get(curPos).getName() + " at space: " + Monopoly.fields.get(curPos).getNumber());
-
-            buyPhase(curPos);
-
-            // Tjekker om det samme antal øjne bliver slået
-            checkEqualEyes();
+            System.out.println(name + " has passed the round marker: " + roundsOnField + " times and gets an additional: " + Monopoly.START_MONEY + "$");
+            money += MonopolyConstants.START_MONEY;
         }
+
+        currentField = Monopoly.fields.get(curPos);
+        System.out.println(name + " moves to " + Monopoly.fields.get(curPos).getName() + " at space: " + Monopoly.fields.get(curPos).getNumber());
+
+        currentField.consequence(this);
+
+        buyPhase();
+        System.out.println(name + " now has " + money + "$");
+
+        // Tjekker om det samme antal øjne bliver slået
+        checkEqualEyes();
 
     }
 
@@ -97,11 +95,11 @@ public class Player {
         System.out.println(name + " GOES TO JAIL nooooo!");
     }
 
-    private void buyPhase(int fieldIndex) {
-        boolean isBuyAble = Monopoly.fields.get(fieldIndex) instanceof OwnableField;
+    private void buyPhase() {
+        boolean isBuyAble = currentField instanceof OwnableField;
         if (isBuyAble) {
 
-            OwnableField fieldToBuy = (OwnableField) Monopoly.fields.get(fieldIndex);
+            OwnableField fieldToBuy = (OwnableField) currentField;
             if (fieldToBuy.getOwner() == null) {
                 System.out.println(name + " has to buy " + fieldToBuy.getName() + " at the price of " + fieldToBuy.getPrice());
 
@@ -110,7 +108,7 @@ public class Player {
                 System.out.println("after buying " + money);
 
                 fieldToBuy.setOwner(this);
-                System.out.println("adding " + fieldToBuy.getName() + " to " + name + " propery list");
+                System.out.println("adding " + fieldToBuy.getName() + " to " + fieldToBuy.getOwner().getName() + " propery list");
 
                 properties.add(fieldToBuy);
             }
@@ -124,7 +122,6 @@ public class Player {
     public boolean hasMoney() {
         boolean answer = (money > 0);
         return answer;
-
     }
 
     public String getName() {
@@ -133,5 +130,18 @@ public class Player {
 
     public ArrayList<OwnableField> getList() {
         return properties;
+    }
+
+    void recieveMoney(int money) {
+        this.money -= money;
+        System.out.println(name + " got " + money + "$, lucky you");
+        System.out.println("and now " + name + " has " + this.money);
+
+    }
+
+    void loseMoney(int money) {
+        this.money -= money;
+        System.out.println(name + " lost " + money + "$");
+        System.out.println("and now " + name + " has " + this.money);
     }
 }

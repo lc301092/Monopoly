@@ -31,12 +31,12 @@ public class Monopoly implements MonopolyConstants {
         p2 = new Player(new DiceCup(6), "Luca", fields.get(0), START_MONEY);
         // start game sequence
         newRound();
+       // testBoard(); 
     }
 
     public void newRound() {
-        System.out.println("Game is over now");
         while (p1.hasMoney() && p2.hasMoney()) {
-            System.out.println("Round " + roundCounter);
+            System.out.println("");
             // spiller 1 skal slå og flytte sig
             p1.move();
             // spiller 2 skal slå og flytte sig
@@ -88,9 +88,7 @@ public class Monopoly implements MonopolyConstants {
                 switch (fieldType) {
                     case "start":
                         System.out.println("Felt: " + fieldNumber + " new otherField startfelt");
-                        // NY CLASS StartField SKAL LAVES.
-                        Field start = new OtherField(fieldName, fieldNumber);
-
+                        Field start = new StartField(fieldName, fieldNumber);
                         fields.add(start);
                         break;
                     case "?":
@@ -100,8 +98,7 @@ public class Monopoly implements MonopolyConstants {
                         break;
                     case "tax":
                         System.out.println("Felt: " + fieldNumber + " new otherField skattefelt");
-                        // NY CLASS TaxField SKAL LAVES
-                        Field tax = new OtherField(fieldName, fieldNumber);
+                        Field tax = new TaxField(fieldName, fieldNumber);
 
                         fields.add(tax);
                         break;
@@ -174,7 +171,7 @@ public class Monopoly implements MonopolyConstants {
         System.out.println("Board array: " + (fields));
         System.out.println("testing all the fields");
         for (int i = 0; i < fields.size(); i++) {
-            System.out.println("field " + i + " is " + fields.get(i).getName());
+            fields.get(i).consequence(p1);
         }
     }
 

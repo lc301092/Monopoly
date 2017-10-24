@@ -5,14 +5,23 @@
  */
 package monopoly;
 
+import java.util.Random;
+
 /**
  *
  * @author Luca Casa
  */
 public class LuckField extends Field {
 
+    private Random generator;
+
     public LuckField(String name, int number) {
         super(name, number);
+        this.generator = new Random();
+    }
+
+    public int randomNumber() {
+        return generator.nextInt(3) + 1;
     }
 
     @Override
@@ -22,6 +31,12 @@ public class LuckField extends Field {
 
     @Override
     public void consequence(Player poorPlayer) {
-        System.out.println(poorPlayer + " PICKS A CARD FROM LUCK PILE");
+        System.out.println(poorPlayer.getName() + " PICKS A CARD FROM LUCK PILE");
+
+        if (randomNumber() <= 2) {
+            poorPlayer.recieveMoney(MonopolyConstants.LUCK_MONEY);
+        } else if (randomNumber() == 3) {
+            poorPlayer.loseMoney(MonopolyConstants.LUCK_MONEY);
+        }
     }
 }
