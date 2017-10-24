@@ -9,14 +9,13 @@ import java.util.Scanner;
 public class Monopoly implements MonopolyConstants {
 
     public final static int FIELD_COUNT = 40;
-    private final static int ROUND_MAX = 10;
-    private int roundCounter;
+    private int roundCounter = 1;
 
     //scanner
     private File fieldData;
 
     // statisk array
-    public static List<Field> fields;
+    public static List<FieldInterface> fields;
 
     // 2 spillere 
     private Player p1, p2;
@@ -35,21 +34,22 @@ public class Monopoly implements MonopolyConstants {
     }
 
     public void newRound() {
-        roundCounter++;
-        if (roundCounter > ROUND_MAX) {
-            System.out.println("Game is over now");
-        } else {
-            System.out.println(" " );
+        System.out.println("Game is over now");
+        while (p1.hasMoney() && p2.hasMoney()) {
+            System.out.println("Round " + roundCounter);
             // spiller 1 skal slå og flytte sig
             p1.move();
             // spiller 2 skal slå og flytte sig
             p2.move();
+            roundCounter++;
             // hvis spillet ikke er over, startes en ny runde.
-            newRound();
         }
+        System.out.println("game is over. ");
+        System.out.println(p1.getName() + " has aquired " + p1.getList());
+        System.out.println(p2.getName() + " has aquired " + p2.getList());
     }
 
-    private List<Field> readFile() {
+    private List<FieldInterface> readFile() {
         fields = new ArrayList<>();
         // scanner is used to read data in the txt file
         fieldData = new File("MonopolyData.txt");
@@ -90,11 +90,11 @@ public class Monopoly implements MonopolyConstants {
                         System.out.println("Felt: " + fieldNumber + " new otherField startfelt");
                         // NY CLASS StartField SKAL LAVES.
                         Field start = new OtherField(fieldName, fieldNumber);
-                        
+
                         fields.add(start);
                         break;
                     case "?":
-                        System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt"); 
+                        System.out.println("Felt: " + fieldNumber + " new otherField lykkefelt");
                         Field lucky = new LuckField(fieldName, fieldNumber);
                         fields.add(lucky);
                         break;
@@ -102,6 +102,7 @@ public class Monopoly implements MonopolyConstants {
                         System.out.println("Felt: " + fieldNumber + " new otherField skattefelt");
                         // NY CLASS TaxField SKAL LAVES
                         Field tax = new OtherField(fieldName, fieldNumber);
+
                         fields.add(tax);
                         break;
                     case "ship":
@@ -115,23 +116,27 @@ public class Monopoly implements MonopolyConstants {
                         System.out.println("Felt: " + fieldNumber + " new breweryfield");
                         fieldPrice = Integer.parseInt(tokens[3]);
                         Field brewery = new BreweryField(fieldName, fieldNumber, fieldPrice);
+
                         fields.add(brewery);
                         break;
                     case "go2jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfiled gotojailfield");
                         Field goToJail = new GoToJailField(fieldName, fieldNumber);
+
                         fields.add(goToJail);
                         break;
                     case "jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfield jailfield");
                         // NY CLASS Jail SKAL LAVES
                         Field jail = new OtherField(fieldName, fieldNumber);
+
                         fields.add(jail);
                         break;
                     case "parking":
                         System.out.println("Felt: " + fieldNumber + " new otherfield parkeringsplads");
                         // NY CLASS Parking SKAL LAVES
                         Field parking = new OtherField(fieldName, fieldNumber);
+
                         fields.add(parking);
                         break;
                     default:
@@ -145,7 +150,7 @@ public class Monopoly implements MonopolyConstants {
                         break;
                 }
             }
-        
+
             // catches til eventuelle execeptions
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -173,5 +178,4 @@ public class Monopoly implements MonopolyConstants {
         }
     }
 
-   
 }

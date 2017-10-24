@@ -10,7 +10,7 @@ package monopoly;
  * @author Luca Casa
  */
 public class LuckField extends Field {
-    
+
     public LuckField(String name, int number) {
         super(name, number);
     }
@@ -18,7 +18,6 @@ public class LuckField extends Field {
     @Override
     public int getNumber() {
         return number;
-        
     }
 
     @Override

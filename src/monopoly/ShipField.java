@@ -9,11 +9,10 @@ package monopoly;
  *
  * @author Luca Casa
  */
-public class ShipField extends OwnableField{
-    
+public class ShipField extends OwnableField {
+
     // der skal laves sådan at ShipField ved hvor mange af de andre shipfields som ejes af samme player.
     //private ShipField[] ownCount;
-    
     public ShipField(String name, int number, int price, int rent) {
         super(name, number, price, rent);
     }
@@ -26,7 +25,6 @@ public class ShipField extends OwnableField{
     @Override
     public int getNumber() {
         return number;
-       
     }
-    
+
 }
