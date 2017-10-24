@@ -23,6 +23,6 @@ public class StreetField extends OwnableField {
 
     @Override
     public int getNumber() {
-        return this.number;
+        return number;
     }
 }

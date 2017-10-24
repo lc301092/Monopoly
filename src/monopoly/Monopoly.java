@@ -9,14 +9,13 @@ import java.util.Scanner;
 public class Monopoly implements MonopolyConstants {
 
     public final static int FIELD_COUNT = 40;
-    private final static int ROUND_MAX = 10;
-    private int roundCounter;
+    private int roundCounter = 1;
 
     //scanner
     private File fieldData;
 
     // statisk array
-    public static List<Field> fields;
+    public static List<FieldInterface> fields;
 
     // 2 spillere 
     private Player p1, p2;
@@ -35,21 +34,26 @@ public class Monopoly implements MonopolyConstants {
     }
 
     public void newRound() {
-        roundCounter++;
-        if (roundCounter > ROUND_MAX) {
-            System.out.println("Game is over now");
-        } else {
+        
+        
+        
+//            System.out.println("Game is over now");
+        while(p1.hasMoney() && p2.hasMoney()){
             System.out.println("Round " + roundCounter);
             // spiller 1 skal slå og flytte sig
             p1.move();
             // spiller 2 skal slå og flytte sig
             p2.move();
+            roundCounter++;
             // hvis spillet ikke er over, startes en ny runde.
-            newRound();
         }
-    }
+        System.out.println("game is over. ");
+        System.out.println( p1.getName() + " has aquired " + p1.getList());
+        System.out.println( p2.getName() + " has aquired " + p2.getList());
+        }
+    
 
-    private List<Field> readFile() {
+    private List<FieldInterface> readFile() {
         fields = new ArrayList<>();
         // scanner is used to read data in the txt file
         fieldData = new File("MonopolyData.txt");
@@ -99,7 +103,7 @@ public class Monopoly implements MonopolyConstants {
                         break;
                     case "tax":
                         System.out.println("Felt: " + fieldNumber + " new otherField skattefelt");
-                        Field tax = new StreetField(fieldName, fieldNumber, 10000);
+                        Field tax = new StreetField(fieldName, fieldNumber, 100);
                         fields.add(tax);
                         break;
                     case "ship":
@@ -110,22 +114,22 @@ public class Monopoly implements MonopolyConstants {
                         break;
                     case "brewery":
                         System.out.println("Felt: " + fieldNumber + " new breweryfield");
-                        Field brewery = new StreetField(fieldName, fieldNumber, 10000);
+                        Field brewery = new StreetField(fieldName, fieldNumber, 100);
                         fields.add(brewery);
                         break;
                     case "go2jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfiled gotojailfield");
-                        Field goToJail = new StreetField(fieldName, fieldNumber, 10000);
+                        Field goToJail = new StreetField(fieldName, fieldNumber, 100);
                         fields.add(goToJail);
                         break;
                     case "jail":
                         System.out.println("Felt: " + fieldNumber + " new otherfield jailfield");
-                        Field jail = new StreetField(fieldName, fieldNumber, 10000);
+                        Field jail = new StreetField(fieldName, fieldNumber, 100);
                         fields.add(jail);
                         break;
                     case "parking":
                         System.out.println("Felt: " + fieldNumber + " new otherfield parkeringsplads");
-                        Field parking = new StreetField(fieldName, fieldNumber, 10000);
+                        Field parking = new StreetField(fieldName, fieldNumber, 100);
                         fields.add(parking);
                         break;
                     default:
