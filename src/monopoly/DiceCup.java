@@ -18,7 +18,10 @@ public class DiceCup {
         eyes2 = d2.throwDie();
         return eyes1 + eyes2;
     }
-
+    
+    public int getEyes(){
+    return eyes1 + eyes2;
+    }
     // Tjek for 2 ens
     public boolean isEqual() {
         return eyes1 == eyes2;

@@ -32,10 +32,10 @@ public class LuckField extends Field {
     @Override
     public void consequence(Player poorPlayer) {
         System.out.println(poorPlayer.getName() + " PICKS A CARD FROM LUCK PILE");
-
-        if (randomNumber() <= 2) {
+        int R = randomNumber();
+        if (R <= 2) {
             poorPlayer.recieveMoney(MonopolyConstants.LUCK_MONEY);
-        } else if (randomNumber() == 3) {
+        } else if (R == 3) {
             poorPlayer.loseMoney(MonopolyConstants.LUCK_MONEY);
         }
     }

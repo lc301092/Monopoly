@@ -20,21 +20,14 @@ public class StreetField extends OwnableField {
         Player owner = getOwner();
         if (owner != null) {
             if (owner == poorPlayer) {
-                System.out.println("YOU ALREADY OWN THIS STREET");
+                System.out.println("YOU ALREADY OWN " + name);
                 rent *= 2;
             } else {
-                System.out.println("THIS STREET IS OWNED BY " + owner.getName() + " PAY THE RENT");
+                System.out.println(name + " IS OWNED BY " + owner.getName() + ", PAY THE RENT");
                 poorPlayer.loseMoney(rent);
                 owner.recieveMoney(rent);
             }
-        } // owner is null so the street can be bought
-        else {
-            // pay the price
-
-            // set the owner
-            setOwner(poorPlayer);
         }
-
     }
 
     @Override

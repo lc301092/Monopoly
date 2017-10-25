@@ -22,7 +22,8 @@ public class TaxField extends Field {
 
     @Override
     public void consequence(Player poorPlayer) {
-        System.out.println(poorPlayer.getName() + " landed on a tax Field and loses 100$");
-        poorPlayer.loseMoney(MonopolyConstants.TAX_MONEY);
+        int taxMoney = MonopolyConstants.TAX_MONEY;
+        System.out.println(poorPlayer.getName() + " landed on a tax Field and loses " + taxMoney);
+        poorPlayer.loseMoney(taxMoney);
     }
 }

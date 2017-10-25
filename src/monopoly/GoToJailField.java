@@ -12,7 +12,7 @@ public class GoToJailField extends Field {
 
     @Override
     public void consequence(Player poorPlayer) {
-        poorPlayer.setPos(MonopolyConstants.JAIL_POS);
+        poorPlayer.setPos(MonopolyConstants.JAIL_POS - 1);
     }
 
     @Override

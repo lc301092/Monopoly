@@ -17,12 +17,11 @@ public class StartField extends Field {
     
       @Override
     public void consequence(Player poorPlayer) {
-          System.out.println(poorPlayer.getName() + " landed on the Start Field");
+          System.out.println(poorPlayer.getName() + " landed on the " + name);
     }
 
     @Override
     public int getNumber() {
         return number; 
     }
-
 }

@@ -18,8 +18,7 @@ public class OtherField extends Field {
 
     @Override
     public void consequence(Player poorPlayer) {
-        // has a special effect depending if it's eg. start field or luckfield 
-        System.out.println(poorPlayer + " landed on otherFields");
+        System.out.println(poorPlayer.getName() + " landed on " + name);
     }
 
     @Override
